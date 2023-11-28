@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:alarmom/presentation/home/home.page.dart';
+import 'package:alarmom/presentation/pages/home/home.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
