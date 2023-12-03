@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
+import 'package:alarmom/presentation/components/alarm_summary.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -10,9 +13,19 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Alarmom'),
       ),
-      body: const Center(
-        child: Text('Hello, world!'),
-      ),
+      body: const _Body(),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.all(10),
+      child: AlarmSummary(),
     );
   }
 }
