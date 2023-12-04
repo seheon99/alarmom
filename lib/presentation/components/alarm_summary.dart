@@ -18,7 +18,9 @@ class _AlarmSummaryState extends ConsumerState<AlarmSummary> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
+        color: _isEnabled
+            ? Theme.of(context).colorScheme.primaryContainer
+            : Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: BorderRadius.circular(20),
         shape: BoxShape.rectangle,
       ),
