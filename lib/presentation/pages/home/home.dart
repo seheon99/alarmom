@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:alarm/alarm.dart';
+
 // Project imports:
 import 'package:alarmom/presentation/components/alarm_summary.dart';
 
@@ -23,9 +26,15 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(10),
-      child: AlarmSummary(),
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: AlarmSummary(
+        alarm: AlarmSettings(
+          id: 1,
+          dateTime: DateTime.now(),
+          assetAudioPath: 'assets/audio/alarm_sound.mp3',
+        ),
+      ),
     );
   }
 }

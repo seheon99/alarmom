@@ -1,1 +1,3 @@
-class Command {}
+abstract class Command {
+  void call();
+}

@@ -2,10 +2,20 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:alarm/alarm.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+// Project imports:
+import 'package:alarmom/presentation/providers/disable_alarm.provider.dart';
+import 'package:alarmom/presentation/providers/enable_alarm.provider.dart';
+
 class AlarmSummary extends ConsumerStatefulWidget {
-  const AlarmSummary({super.key});
+  const AlarmSummary({
+    super.key,
+    required this.alarm,
+  });
+
+  final AlarmSettings alarm;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AlarmSummaryState();
@@ -15,7 +25,17 @@ class _AlarmSummaryState extends ConsumerState<AlarmSummary> {
   bool _isEnabled = false;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final enableCommand = ref.watch(enableAlarmProvider(widget.alarm.id));
+    final disableCommand = ref.watch(disableAlarmProvider(widget.alarm.id));
+
+    bool isLoading = enableCommand.isLoading || disableCommand.isLoading;
+
     return Container(
       decoration: BoxDecoration(
         color: _isEnabled
@@ -61,7 +81,16 @@ class _AlarmSummaryState extends ConsumerState<AlarmSummary> {
             ),
             Switch(
               value: _isEnabled,
-              onChanged: (value) => setState(() => _isEnabled = value),
+              onChanged: isLoading
+                  ? null
+                  : (value) {
+                      final commandProvider =
+                          value ? enableCommand : disableCommand;
+                      commandProvider.whenData((command) {
+                        command();
+                      });
+                      setState(() => _isEnabled = value);
+                    },
             )
           ],
         ),

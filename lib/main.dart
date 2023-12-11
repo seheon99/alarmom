@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
 import 'package:alarmom/presentation/app.dart';
+import 'package:alarmom/provider_logger.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,8 +15,11 @@ Future<void> main() async {
   await Alarm.init();
 
   runApp(
-    const ProviderScope(
-      child: App(),
+    ProviderScope(
+      observers: [
+        ProviderLogger(),
+      ],
+      child: const App(),
     ),
   );
 }

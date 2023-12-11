@@ -35,6 +35,7 @@ dependencies:
   flutter_riverpod: ^2.4.9
   alarm: ^2.1.1
   shared_preferences: ^2.2.2
+  logger: ^2.0.2+1
 
 dev_dependencies:
   flutter_test:
