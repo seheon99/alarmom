@@ -30,6 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localication:
+    sdk: flutter
+  intl: any
   cupertino_icons: ^1.0.2
   equatable: ^2.0.5
   flutter_riverpod: ^2.4.9
