@@ -40,7 +40,7 @@ class _AlarmSummaryState extends ConsumerState<AlarmSummary> {
       decoration: BoxDecoration(
         color: _isEnabled
             ? Theme.of(context).colorScheme.primaryContainer
-            : Theme.of(context).colorScheme.secondaryContainer,
+            : Theme.of(context).colorScheme.surfaceVariant,
         borderRadius: BorderRadius.circular(20),
         shape: BoxShape.rectangle,
       ),
