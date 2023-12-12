@@ -12,7 +12,7 @@ Widget navigate(Widget widget, {bool clearStack = false}) {
         MaterialPageRoute(
           builder: (_) => widget,
         ),
-        (_) => clearStack,
+        (_) => !clearStack,
       );
     });
   }
