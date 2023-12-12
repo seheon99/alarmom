@@ -13,14 +13,27 @@ class AddAlarmPage extends ConsumerStatefulWidget {
 }
 
 class _AddAlarmPageState extends ConsumerState<AddAlarmPage> {
+  final _currentHour = DateTime.now().hour;
+  final _currentMinute = DateTime.now().minute;
+
   int _hour = DateTime.now().add(const Duration(minutes: 1)).hour;
   int _minute = DateTime.now().add(const Duration(minutes: 1)).minute;
 
   @override
   Widget build(BuildContext context) {
+    final diffHour = _hour - _currentHour;
+    final diffMinute = _minute - _currentMinute;
+    final diff = (diffHour * 60 + diffMinute) % (24 * 60);
+
+    final title = diff == 0
+        ? '1분 이내에 알려요'
+        : diff < 60
+            ? '${diff % 60}분 후에 알려요'
+            : '${diff ~/ 60}시간 ${diff % 60}분 후에 알려요';
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Alarm'),
+        title: Text(title),
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () {
