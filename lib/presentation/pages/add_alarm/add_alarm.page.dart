@@ -13,6 +13,25 @@ class AddAlarmPage extends ConsumerStatefulWidget {
 }
 
 class _AddAlarmPageState extends ConsumerState<AddAlarmPage> {
+  static const _days = [
+    '일',
+    '월',
+    '화',
+    '수',
+    '목',
+    '금',
+    '토',
+  ];
+  final List<bool> _repeatDays = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+
   final _currentHour = DateTime.now().hour;
   final _currentMinute = DateTime.now().minute;
 
@@ -78,6 +97,34 @@ class _AddAlarmPageState extends ConsumerState<AddAlarmPage> {
                 },
               ),
             ),
+          ),
+          Row(
+            children: [
+              ...List.generate(
+                7,
+                (index) => Expanded(
+                  child: Column(
+                    children: [
+                      Text(
+                        _days[index],
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                      Checkbox(
+                        value: _repeatDays[index],
+                        onChanged: (value) {
+                          setState(() {
+                            if (value == null) {
+                              return;
+                            }
+                            _repeatDays[index] = value;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
